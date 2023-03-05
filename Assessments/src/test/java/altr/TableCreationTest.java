@@ -56,7 +56,7 @@ import java.sql.*;
 	        assertTrue(tableChecker.columnExists(t_name, "name"));
 	        assertTrue(tableChecker.columnExists(t_name, "email"));
 	        assertFalse(tableChecker.columnExists(t_name, "nonexistent_column"));
-	    }
+//	    }
 
 
 	    @Test
