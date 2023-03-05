@@ -8,7 +8,7 @@ public class TableCreation {
 	        String DB_URL = "jdbc:mysql://localhost:3306/testing";
 	       final String DB_USER = "root";
 	       final String DB_PASSWORD = "ANSKk08aPEDbFjDO";
-	       final String Table_Name = "JeromeB13";
+	       final String Table_Name = "Jerome_B15";
 
 	        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
 	            createTable(conn, Table_Name);

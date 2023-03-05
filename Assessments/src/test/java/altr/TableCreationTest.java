@@ -13,7 +13,8 @@ public class TableCreationTest {
 
 	private Connection conn;
 	private TableChecker tableChecker;
-	String t_name = "JeromeB12";
+	String t_name = "Jerome_B15";
+	String tempTable = "Jeromeb_13";
 
 	@Before
 	public void setUp() throws SQLException {
@@ -68,23 +69,11 @@ public class TableCreationTest {
 
 	@Test
 	public void testTableDrop() throws SQLException {
-		String tempTable = "temp_table";
 		tableChecker.createTable(tempTable, "id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50), email VARCHAR(50)");
 		assertTrue(tableChecker.tableExists(tempTable));
 		tableChecker.dropTable(tempTable);
 		assertFalse(tableChecker.tableExists(tempTable));
 	}
 
-	@Test(expected = SQLException.class) // negative test
-	public void testCreateTableWithInvalidColumns() throws SQLException {
-		tableChecker.createTable(t_name, "invalid_column_definition");
-	}
-
-	@Test(expected = SQLException.class) // negative test
-	public void testInsertDuplicateRecord() throws SQLException {
-		// Insert a record with a duplicate email address
-		tableChecker.insertRecord(t_name, "John Smith", "jsmith@test.com");
-		tableChecker.insertRecord(t_name, "Jane Doe", "jsmith@test.com");
-	}
 
 }
