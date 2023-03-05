@@ -13,7 +13,7 @@ public class TableCreationTest {
 
 	private Connection conn;
 	private TableChecker tableChecker;
-	String t_name = "JeromeB10";
+	String t_name = "JeromeB12";
 
 	@Before
 	public void setUp() throws SQLException {
@@ -66,11 +66,11 @@ public class TableCreationTest {
 		assertTrue(tableChecker.recordCount(t_name) == initialRecordCount + 1);
 	}
 
-	@Test(expected = SQLException.class)
+	@Test(expected = SQLException.class) // negative test
 	public void testCreateTableWithInvalidColumns() throws SQLException {
 		tableChecker.createTable(t_name, "invalid_column_definition");
 	}
-	// replace this test
+	
 
 	@Test
 	public void testTableDrop() throws SQLException {
