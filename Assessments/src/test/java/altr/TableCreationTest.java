@@ -40,6 +40,14 @@ import java.sql.*;
 	        assertTrue(tableChecker.tableExists(t_name));
 	        assertFalse(tableChecker.tableExists("nonexistent_table"));
 	    }
+	    
+	    @Test
+	    public void testInsertRecordSuccess() throws SQLException {
+	        String tableName = "test_table";
+	        tableChecker.createTable(t_name, "name VARCHAR(50), email VARCHAR(50)");
+	        tableChecker.insertRecord(t_name, "John Doe", "johndoe@example.com");
+	        assertTrue(tableChecker.recordCount(t_name) == 1);
+	    }
 
 	    @Test
 	    public void testIndexExists() throws SQLException {
@@ -68,15 +76,23 @@ import java.sql.*;
 	        tableChecker.insertRecord(t_name, "Test User", "testuser@test.com");
 	        assertTrue(tableChecker.recordCount(t_name) == initialRecordCount + 1);
 	    }
+	    
+	    @Test(expected = SQLException.class)
+	    public void testInsertRecordDuplicate() throws SQLException {
+	        String tableName = "test_table";
+	        tableChecker.createTable(t_name, "name VARCHAR(50), email VARCHAR(50)");
+	        tableChecker.insertRecord(t_name, "John Doe", "johndoe@example.com");
+	        tableChecker.insertRecord(t_name, "Jane Smith", "johndoe@example.com");
+	    }
 
 
 	    @Test
 	    public void testTableDrop() throws SQLException {
 	        String tempTable = "temp_table";
-	        tableChecker.createTable(tempTable, "id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50), email VARCHAR(50)");
-	        assertTrue(tableChecker.tableExists(tempTable));
-	        tableChecker.dropTable(tempTable);
-	        assertFalse(tableChecker.tableExists(tempTable));
+	        tableChecker.createTable(t_name, "id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50), email VARCHAR(50)");
+	        assertTrue(tableChecker.tableExists(t_name));
+	        tableChecker.dropTable(t_name);
+	        assertFalse(tableChecker.tableExists(t_name));
 	    }
 
 	    @Test
