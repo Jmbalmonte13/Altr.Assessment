@@ -81,8 +81,8 @@ public class TableCreationTest {
 	    tableChecker.recordCount("nonexistent_table");
 	}
 
-	@Test(expected = SQLException.class) //negative test
-	public void testColumnExistsWithInvalidColumn() throws SQLException {
-	    tableChecker.columnExists(t_name, "invalid_column_name");
+	@Test(expected = SQLException.class) // negative test
+	public void testCreateTableWithNoColumns() throws SQLException {
+	    tableChecker.createTable(t_name, "");
 	}
 }
