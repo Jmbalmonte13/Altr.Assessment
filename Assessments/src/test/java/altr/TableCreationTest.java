@@ -75,5 +75,15 @@ public class TableCreationTest {
 		assertFalse(tableChecker.tableExists(tempTable));
 	}
 
+	@Test(expected = SQLException.class) // negative test
+	public void testCreateTableWithInvalidColumns() throws SQLException {
+	    tableChecker.createTable(t_name, "invalid_column_definition");
+	}
 
+	@Test(expected = SQLException.class) // negative test
+	public void testInsertDuplicateRecord() throws SQLException {
+	    // Insert a record with a duplicate email address
+	    tableChecker.insertRecord(t_name, "John Smith", "jsmith@test.com");
+	    tableChecker.insertRecord(t_name, "Jane Doe", "jsmith@test.com");
+	}
 }
