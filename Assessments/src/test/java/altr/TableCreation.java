@@ -5,10 +5,10 @@ import java.sql.*;
 public class TableCreation {
 
 	 public static void main(String[] args) {
-	        String DB_URL = "jdbc:mysql://localhost:3306/testing?useSSL=false&allowPublicKeyRetrieval=true";
+	        String DB_URL = "jdbc:mysql://localhost:3306/testing";
 	       final String DB_USER = "root";
 	       final String DB_PASSWORD = "ANSKk08aPEDbFjDO";
-	       final String Table_Name = "Jerome_Ba";
+	       final String Table_Name = "JeromeB6";
 
 	        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
 	            createTable(conn, Table_Name);

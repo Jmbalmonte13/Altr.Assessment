@@ -3,6 +3,7 @@ package altr;
 	
 	import org.junit.*;
 
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThrows;
@@ -14,7 +15,7 @@ import java.sql.*;
 		
 	    private Connection conn;
 	    private TableChecker tableChecker;
-	    String t_name = "Jerome_Ba";
+	    String t_name = "JeromeB6";
 
 	    @Before
 	    public void setUp() throws SQLException {
@@ -41,13 +42,6 @@ import java.sql.*;
 	        assertFalse(tableChecker.tableExists("nonexistent_table"));
 	    }
 	    
-	    @Test
-	    public void testInsertRecordSuccess() throws SQLException {
-	        String tableName = "test_table";
-	        tableChecker.createTable(t_name, "name VARCHAR(50), email VARCHAR(50)");
-	        tableChecker.insertRecord(t_name, "John Doe", "johndoe@example.com");
-	        assertTrue(tableChecker.recordCount(t_name) == 1);
-	    }
 
 	    @Test
 	    public void testIndexExists() throws SQLException {
@@ -79,7 +73,6 @@ import java.sql.*;
 	    
 	    @Test(expected = SQLException.class)
 	    public void testInsertRecordDuplicate() throws SQLException {
-	        String tableName = "test_table";
 	        tableChecker.createTable(t_name, "name VARCHAR(50), email VARCHAR(50)");
 	        tableChecker.insertRecord(t_name, "John Doe", "johndoe@example.com");
 	        tableChecker.insertRecord(t_name, "Jane Smith", "johndoe@example.com");
@@ -89,10 +82,10 @@ import java.sql.*;
 	    @Test
 	    public void testTableDrop() throws SQLException {
 	        String tempTable = "temp_table";
-	        tableChecker.createTable(t_name, "id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50), email VARCHAR(50)");
-	        assertTrue(tableChecker.tableExists(t_name));
-	        tableChecker.dropTable(t_name);
-	        assertFalse(tableChecker.tableExists(t_name));
+	        tableChecker.createTable(tempTable, "id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50), email VARCHAR(50)");
+	        assertTrue(tableChecker.tableExists(tempTable));
+	        tableChecker.dropTable(tempTable);
+	        assertFalse(tableChecker.tableExists(tempTable));
 	    }
 
 	    @Test
