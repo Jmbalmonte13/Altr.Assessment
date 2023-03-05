@@ -15,7 +15,7 @@ import java.sql.*;
 		
 	    private Connection conn;
 	    private TableChecker tableChecker;
-	    String t_name = "JeromeB6";
+	    String t_name = "JeromeB10";
 
 	    @Before
 	    public void setUp() throws SQLException {
@@ -77,6 +77,7 @@ import java.sql.*;
 	        tableChecker.insertRecord(t_name, "John Doe", "johndoe@example.com");
 	        tableChecker.insertRecord(t_name, "Jane Smith", "johndoe@example.com");
 	    }
+	    //replace this test
 
 
 	    @Test

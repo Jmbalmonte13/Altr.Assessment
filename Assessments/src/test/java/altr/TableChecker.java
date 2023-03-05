@@ -1,6 +1,6 @@
 package altr;
-import org.junit.*;
 import java.sql.*;
+import org.junit.*;
 
 
 	public class TableChecker {
