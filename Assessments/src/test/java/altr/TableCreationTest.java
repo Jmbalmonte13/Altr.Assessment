@@ -76,5 +76,13 @@ public class TableCreationTest {
 		assertFalse(tableChecker.tableExists(tempTable));
 	}
 
-	
+	@Test(expected = SQLException.class) //negative test
+	public void testTableDoesNotExist() throws SQLException {
+	    tableChecker.recordCount("nonexistent_table");
+	}
+
+	@Test(expected = SQLException.class) //negative test
+	public void testColumnExistsWithInvalidColumn() throws SQLException {
+	    tableChecker.columnExists(t_name, "invalid_column_name");
+	}
 }
