@@ -1,0 +1,23 @@
+testTableExists() - This test case checks if the TableChecker object correctly detects if a table exists in the database or not. 
+It asserts that a table that was created previously exists and that a nonexistent table doesn't exist.
+
+testIndexExists() - This test case checks if the TableChecker object correctly detects if an index exists on a table or not. 
+It asserts that the indexes that were created previously exist and that a nonexistent index doesn't exist.
+
+testColumnExists() - This test case checks if the TableChecker object correctly detects if a column exists in a table or not. 
+It asserts that the columns that were created previously exist and that a nonexistent column doesn't exist.
+
+testRecordCount() - This test case checks if the TableChecker object correctly returns the number of records in a table. 
+It asserts that the number of records in the table matches the expected value (in this case, 10).
+
+testInsertRecord() - This test case checks if the TableChecker object correctly inserts a record into a table. 
+It asserts that the number of records in the table increases by 1 after the record is inserted.
+
+testInsertRecordDuplicate() - This test case checks if the TableChecker object correctly throws an exception when trying to insert a record with a duplicate key into the table. 
+It creates a table with two records that have the same value for the unique column, and then tries to insert a third record with the same value, expecting a SQLException to be thrown.
+
+testTableDrop() - This test case checks if the TableChecker object correctly drops a table from the database. 
+It creates a temporary table, asserts that it exists, drops it, and then asserts that it no longer exists.
+
+testTransactionRollback() - This test case checks if the TableChecker object correctly rolls back a transaction in case of an error. 
+It inserts two records into the table inside a transaction, intentionally throws a SQLException, and then rolls back the transaction. It asserts that the number of records in the table remains unchanged after the transaction.
