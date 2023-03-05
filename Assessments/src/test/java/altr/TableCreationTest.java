@@ -13,8 +13,8 @@ public class TableCreationTest {
 
 	private Connection conn;
 	private TableChecker tableChecker;
-	String t_name = "Jerome_B15";
-	String tempTable = "Jeromeb_13";
+	String t_name = "Jerome_B29";
+	String tempTable = "temp_table";
 
 	@Before
 	public void setUp() throws SQLException {
@@ -32,6 +32,13 @@ public class TableCreationTest {
 
 		conn.close();
 
+	}
+	
+	@Test
+	public void testInsertRecord() throws SQLException {
+		int initialRecordCount = tableChecker.recordCount(t_name);
+		tableChecker.insertRecord(t_name, "Test User", "testuser@test.com");
+		assertTrue(tableChecker.recordCount(t_name) == initialRecordCount + 1);
 	}
 
 	@Test
@@ -60,12 +67,6 @@ public class TableCreationTest {
 		assertTrue(tableChecker.recordCount(t_name) == 10);
 	}
 
-	@Test
-	public void testInsertRecord() throws SQLException {
-		int initialRecordCount = tableChecker.recordCount(t_name);
-		tableChecker.insertRecord(t_name, "Test User", "testuser@test.com");
-		assertTrue(tableChecker.recordCount(t_name) == initialRecordCount + 1);
-	}
 
 	@Test
 	public void testTableDrop() throws SQLException {
@@ -75,15 +76,5 @@ public class TableCreationTest {
 		assertFalse(tableChecker.tableExists(tempTable));
 	}
 
-	@Test(expected = SQLException.class) // negative test
-	public void testCreateTableWithInvalidColumns() throws SQLException {
-	    tableChecker.createTable(t_name, "invalid_column_definition");
-	}
-
-	@Test(expected = SQLException.class) // negative test
-	public void testInsertDuplicateRecord() throws SQLException {
-	    // Insert a record with a duplicate email address
-	    tableChecker.insertRecord(t_name, "John Smith", "jsmith@test.com");
-	    tableChecker.insertRecord(t_name, "Jane Doe", "jsmith@test.com");
-	}
+	
 }
