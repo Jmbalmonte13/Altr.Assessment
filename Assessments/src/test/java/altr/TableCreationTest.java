@@ -66,12 +66,6 @@ public class TableCreationTest {
 		assertTrue(tableChecker.recordCount(t_name) == initialRecordCount + 1);
 	}
 
-	@Test(expected = SQLException.class) // negative test
-	public void testCreateTableWithInvalidColumns() throws SQLException {
-		tableChecker.createTable(t_name, "invalid_column_definition");
-	}
-	
-
 	@Test
 	public void testTableDrop() throws SQLException {
 		String tempTable = "temp_table";
@@ -81,20 +75,16 @@ public class TableCreationTest {
 		assertFalse(tableChecker.tableExists(tempTable));
 	}
 
-	@Test
-	public void testTransactionRollback() throws SQLException {
-		try {
-			conn.setAutoCommit(false);
-			tableChecker.insertRecord(t_name, "John Smith", "jsmith@test.com");
-			tableChecker.insertRecord(t_name, "Jane Doe", "jdoe@test.com");
-			assertTrue(tableChecker.recordCount(t_name) == 12);
-			throw new SQLException("Rollback this transaction!");
-		} catch (SQLException e) {
-			conn.rollback();
-		} finally {
-			conn.setAutoCommit(true);
-		}
-		assertTrue(tableChecker.recordCount(t_name) == 10);
+	@Test(expected = SQLException.class) // negative test
+	public void testCreateTableWithInvalidColumns() throws SQLException {
+		tableChecker.createTable(t_name, "invalid_column_definition");
+	}
+
+	@Test(expected = SQLException.class) // negative test
+	public void testInsertDuplicateRecord() throws SQLException {
+		// Insert a record with a duplicate email address
+		tableChecker.insertRecord(t_name, "John Smith", "jsmith@test.com");
+		tableChecker.insertRecord(t_name, "Jane Doe", "jsmith@test.com");
 	}
 
 }
