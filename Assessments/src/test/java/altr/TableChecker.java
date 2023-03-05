@@ -65,15 +65,20 @@ public class TableChecker {
 	}
 
 	public void insertRecord(String tableName, String name, String email) throws SQLException {
-		try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO " + tableName + " (name, email) VALUES (?, ?)")) {
+		try (PreparedStatement stmt = conn
+				.prepareStatement("INSERT INTO " + tableName + " (name, email) VALUES (?, ?)")) {
 			stmt.setString(1, name);
 			stmt.setString(2, email);
 			int rowsAffected = stmt.executeUpdate();
 			if (rowsAffected == 0) {
 				throw new SQLException("Insert failed");
 			}
-		} catch (SQLIntegrityConstraintViolationException e) {
-			throw new SQLException("Duplicate entry for email: " + email, e);
+		} catch (SQLException e) {
+			if (e.getMessage().contains("Duplicate entry")) {
+				throw e;
+			} else {
+				throw new SQLException("Insert failed");
+			}
 		}
 	}
 
