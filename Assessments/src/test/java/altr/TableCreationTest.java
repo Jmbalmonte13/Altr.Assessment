@@ -13,16 +13,17 @@ public class TableCreationTest {
 
 	private Connection conn;
 	private TableChecker tableChecker;
-	String t_name = "Jerome_B440";
 	String tempTable = "temp_table";
+	String t_name = "rename_table_here1";
+	
 
 	@Before
 	public void setUp() throws SQLException {
-		String DB_URL = "jdbc:mysql://localhost:3306/testing";
-		final String DB_USER = "root";
-		final String DB_PASSWORD = "ANSKk08aPEDbFjDO";
+		String DB_Url = "jdbc:mysql://localhost:3306/testing";
+		final String DB_user = "root";
+	    final String DB_pass = "ANSKk08aPEDbFjDO";
 
-		conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+		conn = DriverManager.getConnection(DB_Url, DB_user , DB_pass);
 		tableChecker = new TableChecker(conn);
 
 	}
@@ -33,7 +34,7 @@ public class TableCreationTest {
 		conn.close();
 
 	}
-	
+
 	@Test
 	public void testInsertRecord() throws SQLException {
 		int initialRecordCount = tableChecker.recordCount(t_name);
@@ -67,7 +68,6 @@ public class TableCreationTest {
 		assertTrue(tableChecker.recordCount(t_name) == 10);
 	}
 
-
 	@Test
 	public void testTableDrop() throws SQLException {
 		tableChecker.createTable(tempTable, "id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50), email VARCHAR(50)");
@@ -76,13 +76,13 @@ public class TableCreationTest {
 		assertFalse(tableChecker.tableExists(tempTable));
 	}
 
-	@Test(expected = SQLException.class) //negative test
+	@Test(expected = SQLException.class) // negative test
 	public void testTableDoesNotExist() throws SQLException {
-	    tableChecker.recordCount("nonexistent_table");
+		tableChecker.recordCount("nonexistent_table");
 	}
 
 	@Test(expected = SQLException.class) // negative test
 	public void testCreateTableWithNoColumns() throws SQLException {
-	    tableChecker.createTable(t_name, "");
+		tableChecker.createTable(t_name, "");
 	}
 }

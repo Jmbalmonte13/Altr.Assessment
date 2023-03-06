@@ -65,7 +65,8 @@ public class TableChecker {
 	}
 
 	public void insertRecord(String tableName, String name, String email) throws SQLException {
-		try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO " + tableName + " (name, email) VALUES (?, ?)")) {
+		try (PreparedStatement stmt = conn
+				.prepareStatement("INSERT INTO " + tableName + " (name, email) VALUES (?, ?)")) {
 			stmt.setString(1, name);
 			stmt.setString(2, email);
 			int rowsAffected = stmt.executeUpdate();
