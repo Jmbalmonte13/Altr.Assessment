@@ -5,7 +5,7 @@ import org.junit.*;
 
 public class TableChecker {
 
-	private final Connection conn;
+	private Connection conn;
 
 	public TableChecker(Connection conn) {
 		this.conn = conn;
