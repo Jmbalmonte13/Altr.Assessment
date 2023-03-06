@@ -7,7 +7,7 @@ public class TableChecker {
 
 	private Connection conn;
 
-	public TableChecker(Connection conn) {
+	public TableChecker(Connection conn) { //just checkiiing
 		this.conn = conn;
 	}
 
