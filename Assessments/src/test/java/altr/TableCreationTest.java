@@ -13,7 +13,7 @@ public class TableCreationTest {
 
 	private Connection conn;
 	private TableChecker tableChecker;
-	String t_name = "Jerome_B40";
+	String t_name = "Jerome_B440";
 	String tempTable = "temp_table";
 
 	@Before
