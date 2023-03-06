@@ -14,7 +14,7 @@ public class TableCreationTest {
 	private Connection conn;
 	private TableChecker tableChecker;
 	final String tempTable = "temp_table";
-	String t_name = "rename_table_here";
+	String t_name = "rename_table_@_here";
 	
 
 	@Before
