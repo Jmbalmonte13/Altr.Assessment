@@ -8,6 +8,7 @@ public class TableChecker {
 	private Connection conn;
 
 	public TableChecker(Connection conn) {
+		this.conn = conn;
 	}
 
 	public boolean tableExists(String tableName) throws SQLException {
