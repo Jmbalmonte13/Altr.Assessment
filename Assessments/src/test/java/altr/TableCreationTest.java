@@ -13,8 +13,8 @@ public class TableCreationTest {
 
 	private Connection conn;
 	private TableChecker tableChecker;
-	String tempTable = "temp_table";
-	String t_name = "rename_table_here5";
+	final String tempTable = "temp_table";
+	String t_name = "rename_table_here";
 	
 
 	@Before

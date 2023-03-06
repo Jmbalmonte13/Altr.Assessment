@@ -12,7 +12,7 @@ public class TableCreation {
 	       String DB_url = "jdbc:mysql://localhost:3306/testing";
 	       final String DB_user = "root";
 	       final String DB_pass = "ANSKk08aPEDbFjDO";
-	       String Table_Name = "rename_table_here5";
+	       String Table_Name = "rename_table_here";
 
 	        try (Connection conn = DriverManager.getConnection(DB_url, DB_user, DB_pass)) {
 	            createTable(conn, Table_Name);
